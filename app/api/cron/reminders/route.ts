@@ -14,9 +14,9 @@ export async function GET(request: NextRequest) {
 
   try {
     const now = new Date();
-    // 24 to 25 hour window from right now
-    const windowStart = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-    const windowEnd = new Date(now.getTime() + 25 * 60 * 60 * 1000);
+    // Wide window: anything happening in the next 20–44 hours (covers full day since cron runs once daily)
+    const windowStart = new Date(now.getTime() + 20 * 60 * 60 * 1000);
+    const windowEnd = new Date(now.getTime() + 44 * 60 * 60 * 1000);
 
     const settings = await getBookingSettings();
 
